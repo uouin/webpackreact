@@ -1,0 +1,10 @@
+div{
+    border: 10px solid red;
+    background: #a726ce;
+    width: 500px;
+    height: 200px;
+    margin: 100px auto;
+    text-align: center;
+    font-size: 20px;
+    line-height: 100px;
+}

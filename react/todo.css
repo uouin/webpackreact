@@ -1,0 +1,89 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #b0cce5;
+    font-size: 10px;
+}
+.none{
+    display: none;
+}
+.completed label{
+    text-decoration: line-through;
+}
+.contain{
+    margin: 60px auto;
+    width: 600px;
+}
+.contain p{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: honeydew;
+
+}
+.contain input.toggle-all{
+    position: absolute;
+    top: 8rem;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+
+.contain input.nameInput{
+    width: 100%;
+    border-style: dotted;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-color: ghostwhite;
+    border-radius: 5px;
+}
+*::-webkit-input-placeholder {
+    /* color: #b0cce5; */
+}
+
+section{
+
+}
+ul.todoList{
+    width: 100%;
+    padding-left: 0px;
+}
+li{
+    list-style: none;
+    border-radius: 5px;
+    border: 1px solid ivory;
+    margin: 5px 0px;
+}
+.checkbox{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+.text,label,.destory,.edit{
+    display: inline-block;
+}
+.view{
+    display: flex;
+}
+.listCon{
+    flex: 1;
+    background: #b6d1e9;
+    line-height: 50px;
+    font-size: 1.2rem;
+    text-indent: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+}
+button{
+    margin: 10px;
+    float: right;
+    border-radius: 12px;
+    border-style: dotted;
+    line-height: 24px;
+    outline: none;
+}
+button:active{
+    color: #dddddd;
+    background: border-box;
+}
