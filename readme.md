@@ -1,5 +1,5 @@
 # webpackreact
-react todo Demo 结合webpack + babel + react
+react todo Demo 结合webpack 3.8.1 + babel + react
 
 # 安装
 npm i 
