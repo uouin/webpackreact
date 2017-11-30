@@ -37,6 +37,7 @@ import Item from './item';
 
 consolelog('app?default', appClass);
 consolelog('Json文件',dataJson);
+consolelog1(1/0);
 
 class Main extends React.Component {
   render() {
@@ -75,7 +76,7 @@ class Main extends React.Component {
         <header className="header">
           
           <p><i className="iconfont">&#xe893;</i>Hello {this.props.name} </p>
-          <input className="nameInput" placeholder="请输入内容" defaultValue="mxmxm" onKeyDown={this.keyDownHandle} />
+          <input className="nameInput" placeholder="请输入内容" defaultValue="mxmxm1" onKeyDown={this.keyDownHandle} />
         </header>
         {content}
         {footer}
@@ -96,7 +97,7 @@ class Main extends React.Component {
   }
   toggle(id, event) {
     // 属性也可以传函数
-    consolelog(event.target.checked);
+    consolog(event.target.checked);
     app.toggle(id);
   }
   delete(id) {

@@ -1,6 +1,7 @@
 // 首先这也是一个模块输出
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     // entry: "./app/index.js",
     entry: {
@@ -51,10 +52,10 @@ module.exports = {
                             gifsicle: {
                                 interlaced: false,
                             },
-                            // the webp option will enable WEBP
-                            webp: {
-                                quality: 75
-                            }
+                            // // the webp option will enable WEBP
+                            // webp: {
+                            //     quality: 75
+                            // }
                         }
                     },
                     // {
@@ -92,7 +93,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.css', '.jsx'] // 自动补全识别后缀
     },
+    devtool: 'inline-source-map',
     plugins: [
+        new CleanWebpackPlugin(['build']),//每次编译前清除build下的文件
         new htmlWebpackPlugin({
             title: "欢迎react__react_react",
             filename: "react.html", // 无则默认index.html
