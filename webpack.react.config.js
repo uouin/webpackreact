@@ -14,7 +14,11 @@ module.exports = {
     module: {
         loaders: [{
                 test: /.css$/,
-                loaders: ["style-loader", "css-loader"],
+                // loaders: ["style-loader", "css-loader"],
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ],
                 exclude: "/node_modules/"
             },
             {
@@ -24,6 +28,58 @@ module.exports = {
                 // loaders: ["react-hot-loader","babel-loader?presets[]=es2015&presets[]=react"],
                 exclude: "/node_modules/",
                 include: path.resolve(__dirname, "react")
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    },
+                    // {
+                    //     loader: 'url-loader',
+                    //     options: {
+                    //       limit: 8192
+                    //     //   mimetype: 'image/png'
+                    //     }
+                    //   }
+                ],
+            },
+            // {
+            //     test: /\.(html)$/,
+            //     use: {
+            //       loader: 'html-loader',
+            //       options: {
+            //         minimize: true
+            //     }
+            //     }
+            //   },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
             }
         ]
     },

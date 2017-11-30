@@ -28,41 +28,44 @@ ReactDOM.render(
 );
 
 // todo demo
-require('./todo');
-let appJson = require('./app.jsx');
-let app = appJson.default;
+require('./css/todo');
+import MyImage from './css/back.jpg';
+let appClass = require('./app.jsx');
+let dataJson = require('./data.json');
+let app = appClass.default;
 import Item from './item';
 
-consolelog('app?default', appJson);
+consolelog('app?default', appClass);
+consolelog('Json文件',dataJson);
 
 class Main extends React.Component {
   render() {
     var dataA = this.props.dataA;
 
-    var content, footer,num=0;
-     // reduce的作用???
-    dataA.reduce((n,item)=>{
-      num = item.complete ? num : num+1; // num个未选
-    },0);
-    consolelog('num',num);
+    var content, footer, num = 0;
+    // reduce的作用???
+    dataA.reduce((n, item) => {
+      num = item.complete ? num : num + 1; // num个未选
+    }, 0);
 
     if (dataA.length != 0) {
       // 内容组件
       content = <section className="main">
-        <input className="toggle-all" type="checkbox" onChange={this.toggleaAll} checked={num===0?true:false}/>
+        <input className="toggle-all" type="checkbox" onChange={this.toggleaAll} checked={num === 0 ? true : false} />
         <ul className="todoList">
           {
             dataA.map(function (item, index) {
-              return <Item key={index} {...item} toggle={this.toggle.bind(this,item.id)} delete={this.delete.bind(this,item.id)}/>
+              return <Item key={index} {...item} toggle={this.toggle.bind(this, item.id)} delete={this.delete.bind(this, item.id)} />
             }.bind(this))
           }
         </ul>
       </section>
-
-      footer = <footer className="footer"> 
+      
+      footer = <footer className="footer">
         <span className="todoconut">
           <strong>{num}</strong>
           <span>条未选中</span>
+          <img src={MyImage} />
         </span>
       </footer>
 
@@ -70,7 +73,8 @@ class Main extends React.Component {
     return (
       <div className="contain">
         <header className="header">
-          <p>Hello {this.props.name} </p>
+          
+          <p><i className="iconfont">&#xe893;</i>Hello {this.props.name} </p>
           <input className="nameInput" placeholder="请输入内容" defaultValue="mxmxm" onKeyDown={this.keyDownHandle} />
         </header>
         {content}
@@ -86,16 +90,16 @@ class Main extends React.Component {
       event.target.value = "";
     }
   }
-  toggleaAll(event){
+  toggleaAll(event) {
     // consolelog(event.target.checked);//input>checked
     app.toggleaAll(event.target.checked);
   }
-  toggle(id,event){
+  toggle(id, event) {
     // 属性也可以传函数
     consolelog(event.target.checked);
     app.toggle(id);
   }
-  delete(id){
+  delete(id) {
     app.delete(id);
   }
 }
@@ -113,11 +117,9 @@ function render(dataArr) {
 render(app.dataArr);
 app.render = render;
 
-function consolelog(a, b) {
-  // console.log(`-------${b ? b : ''}---------\n`, a);
-  // console.log(b===undefined);
-  b===undefined
-  ? console.log(`------------------------\n`, a)
-  : console.log(`------------${a}------------\n`, b);
+function consolelog() {
+  arguments[1] === undefined
+    ? console.log(`------------------------\n`, arguments[0])
+    : console.log(`------------${arguments[0]}------------\n`, arguments[1]);
 }
 
