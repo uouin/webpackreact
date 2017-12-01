@@ -27,7 +27,7 @@ ReactDOM.render(
   divb
 );
 
-// todo demo
+// todo demo---------------------------------------------------------------------
 require('./css/todo');
 import MyImage from './css/back.jpg';
 let appClass = require('./app.jsx');
@@ -37,7 +37,6 @@ import Item from './item';
 
 consolelog('app?default', appClass);
 consolelog('Json文件',dataJson);
-consolelog1(1/0);
 
 class Main extends React.Component {
   render() {
@@ -97,7 +96,7 @@ class Main extends React.Component {
   }
   toggle(id, event) {
     // 属性也可以传函数
-    consolog(event.target.checked);
+    consolelog(event.target.checked);
     app.toggle(id);
   }
   delete(id) {
