@@ -35,6 +35,9 @@ let app = {
         });
         this.dataArr = newArr;
         app.render(this.dataArr);
+    },
+    print:function(){
+        console.log('------++=-',arguments[0]);
     }
 }
 export default app;
