@@ -31,7 +31,7 @@ module.exports = {
                 include: path.resolve(__dirname, "react")
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|ico)$/,
                 use: [
                     'file-loader',
                     {
@@ -98,7 +98,7 @@ module.exports = {
         new CleanWebpackPlugin(['build']),//每次编译前清除build下的文件
         new htmlWebpackPlugin({
             title: "欢迎react__react_react",
-            filename: "react.html", // 无则默认index.html
+            filename: "index.html", // 无则默认index.html
             chunks: ['react'] // 需要引用的js
         })
     ]
