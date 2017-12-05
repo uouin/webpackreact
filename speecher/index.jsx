@@ -9,10 +9,18 @@ let appClass = require("./app.jsx");
 // let dataJson = require("./data.json");
 let app = appClass.default;
 import Item from "./item";
+import { Button ,WingBlank } from 'antd-mobile';
 
 consolelog("app?default", appClass);
 
 class Main extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: true,
+      text: '超级',
+    }
+}
   render() {
     var dataA = app.dataArr;
     var status = app.status;
@@ -55,9 +63,9 @@ class Main extends React.Component {
       functionContern = (
         <section className="main">
           <ul className="todoList">
-            <li className="fun"><button onClick={this.toManage}>员工管理</button></li>
+            <li className="fun"><button onClick={this.toManage.bind(this)}>员工管理</button></li>
             <li className="fun"><button onClick={this.toHistory}>历史记录</button></li>
-            <li className="fun"><button>超级演说家</button></li>
+            <li className="fun" style={{display:this.state.visible?'block':'none'}}><button>{this.state.text}超级演说家</button></li>
           </ul>
         </section>
       );
@@ -126,6 +134,11 @@ class Main extends React.Component {
             {this.props.name}{" "}
           </p>
         </header>
+        <WingBlank size="lg">
+        <Button className="btn" type="primary">primary 按钮</Button>
+        <Button className="btn" disabled onClick={e => console.log(e)}>disabled 按钮</Button>
+        <Button className="btn" loading>loading 按钮</Button>
+        </WingBlank>
         {loginContern}
         {functionContern}
         {footer}
@@ -154,7 +167,12 @@ class Main extends React.Component {
     }
   }
   toManage(){
-    app.toManage();
+    this.setState({
+      visible:!this.state.visible,
+      text:'究极'
+    });
+  consolelog(this.state.visible);
+    // app.toManage();
   }
   toggleaAll(event) {
     // consolelog(event.target.checked);//input>checked
