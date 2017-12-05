@@ -12,7 +12,8 @@
     "run_es6": "webpack-dev-server --port 3300 --hot --inline --config webpack.es6.config.js",
     "run_react": "webpack-dev-server --port 3000 --hot --inline --config webpack.react.config.js",
     "watch": "webpack --watch --config webpack.react.config.js",
-    "server": "node server.js"
+    "server": "node server.js",
+    "sp": "webpack-dev-server --port 3000 --hot --inline --config webpack.speecher.config.js"
   },
   "author": "gsxin",
   "license": "ISC",
