@@ -7,9 +7,13 @@ export default class Item extends React.Component {
         return ( 
             <li className={this.props.complete?"completed":''}>
             <div className="view">
-              <input type="checkbox" className="checkbox" checked={this.props.complete} onChange={this.props.toggle}/>
-              <label className="listCon">{this.props.content}</label>
-              <button className="destory" onClick={this.props.delete}>删除</button>
+              <img src={this.props.imgUrl} alt="" className="photo"/>
+              <p className="namep">{this.props.name}</p>
+              {/* <input type="checkbox" className="checkbox" checked={this.props.complete} onChange={this.props.toggle}/> */}
+              <div className="bottom">
+                <div className="destory" onClick={this.props.destory}>删除</div>
+                <div className="edit" onClick={this.props.edit} >编辑</div>
+              </div>
             </div>
             {/* <input type="text" className="edit" /> */}
           </li>

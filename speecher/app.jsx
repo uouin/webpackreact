@@ -1,39 +1,81 @@
 let app = {
-  status: {
-    login: true, //登录状态
-    page:{
-        Manage:false,
-        history:false
-    }
-  },
   user: [
     {
       name: "aaa",
       pass: "aaa"
-    },
+    }
+  ],
+  workers:[
     {
-        name: "aaa",
-        pass: "a"
-      }
+      name:'同桌A',
+      id:'01',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'同桌B',
+      id:'02',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'同桌C',
+      id:'03',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'同桌A',
+      id:'04',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'',
+      id:'05',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'同桌C',
+      id:'06',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    },{
+      name:'同桌A',
+      id:'07',
+      imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+      date:''
+    }
   ],
   login: function() {
-
+    var login = false;
     this.user.forEach(item => {
       if (item.name == arguments[0] && item.pass == arguments[1]) {
-        this.status.login = true;
+        login = true;
       }
     });
-    if(this.status.login){
-        app.render();
-    }
-    return this.status.login;
+    return login;
   },
-  toManage:function(){
-    this.status.page.forEach(item=>{
-        console.log(item);
-    })
-    // this.status.login = true;
-    
+  editWorker:function(id,name){
+    // console.log(id,name);
+    if(id){
+      this.workers.forEach(item => {
+        if (item.id == id) {
+          item.name = name;
+        }
+      });
+    }else{
+      this.workers.push({
+        name:name,
+        id: Date.now(),
+        imgUrl:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58',
+        date:''
+      });
+    }
+    app.render();
+  },
+  destory:function(id){
+    var newWork = this.workers.filter(item => {
+      return item.id != id;
+    });
+    this.workers = newWork;
+    app.render();
   },
   dataArr: [
     {
