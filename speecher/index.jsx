@@ -154,6 +154,7 @@ class Main extends React.Component {
               <img
                 src={that.editFace ? that.editFace : that.defaultFace}
                 alt=""
+                ref="editFace"
                 className="workFace"
               />
               <input type="file" className="file" accept="image/*" ref="file" onChange={this.fileHandle.bind(this)}/>
@@ -294,9 +295,19 @@ class Main extends React.Component {
       });
     }
   }
-  fileHandle(){
+  fileHandle(e){
     var fileInput = this.refs.file;
-    
+    var editFaceUrl = this.refs.editFace;
+    var reader = new FileReader();
+    // consolelog(fileInput.files[0]);
+    reader.readAsDataURL(fileInput.files[0]);
+    reader.onload = function (e) {
+      // img.setAttribute('crossOrigin', 'anonymous'); // 允许CORS跨域配置
+      editFaceUrl.src = e.target.result;
+      editFaceUrl.onload = function () {
+        consolelog('onload');
+      }
+    }      
   }
 
   toggleaAll(event) {
