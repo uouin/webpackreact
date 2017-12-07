@@ -45,3 +45,6 @@ export function cube(x) {
 export function cubee(x) {
   return x * x ;
 }
+export function abc(u) {
+  return u + u ;
+}
