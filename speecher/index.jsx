@@ -8,10 +8,13 @@ require("./css/todo");
 let appClass = require("./app.jsx");
 // let dataJson = require("./data.json");
 let app = appClass.default;
-import Item from "./item";
+import {Item,cube} from "./item";
 import { Button, WingBlank } from "antd-mobile";
+// import { Button } from 'antd';
+
 
 consolelog("app?default", appClass);
+consolelog("cube", cube(2));
 
 class Main extends React.Component {
   constructor(props) {
@@ -208,6 +211,7 @@ class Main extends React.Component {
             <strong>{num}</strong>
             <span>条未选中</span>
           </span>
+          
         </footer>
       );
     }
@@ -218,18 +222,10 @@ class Main extends React.Component {
             <i className="iconfont">&#xe893;</i>
             {this.props.name}{" "}
           </p>
+      <Button type="primary">Primary</Button>
+          
         </header>
-        {/* <WingBlank size="lg">
-          <Button className="btn" type="primary">
-            primary 按钮
-          </Button>
-          <Button className="btn" disabled onClick={e => console.log(e)}>
-            disabled 按钮
-          </Button>
-          <Button className="btn" loading>
-            loading 按钮
-          </Button>
-        </WingBlank> */}
+       
         {loginContern}
         {functionContern}
         {manageContern}
@@ -326,6 +322,14 @@ class Main extends React.Component {
 
 function render() {
   ReactDOM.render(<Main name="超级演说家后台系统" />, diva);
+  // ReactDOM.render(
+  //   <div>
+  //     <Button type="primary">Primary</Button>
+  //     <Button>Default</Button>
+  //     <Button type="dashed">Dashed</Button>
+  //     <Button type="danger">Danger</Button>
+  //   </div>
+  // , diva);
 }
 render();
 app.render = render;

@@ -3,6 +3,7 @@ var path = require("path");
 var htmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require('webpack');// new webpack.NamedModulesPlugin() new webpack.HotModuleReplacementPlugin()
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');//删除未引用的代码
 module.exports = {
   // entry: "./app/index.js",
   entry: {
@@ -101,6 +102,7 @@ module.exports = {
       chunks: ["speecher"] // 需要引用的js  
     }),
     // new webpack.NamedModulesPlugin(), //以便更容易查看要修补(patch)的依赖 
-    new webpack.HotModuleReplacementPlugin()//模块热替换(Hot Module Replacement)
+    new webpack.HotModuleReplacementPlugin(),//模块热替换(Hot Module Replacement)
+    // new UglifyJSPlugin()
   ]
 };
