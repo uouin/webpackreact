@@ -9,7 +9,7 @@ let appClass = require("./app.jsx");
 // let dataJson = require("./data.json");
 let app = appClass.default;
 import {Item,cube} from "./item";
-import { Button, WingBlank } from "antd-mobile";
+import { Button, Row, Col } from "antd";
 // import { Button } from 'antd';
 
 
@@ -21,9 +21,9 @@ class Main extends React.Component {
     super(props);
     this.state = {
       panel: false,
-      login: true, //false
-      toFunction: false, //true,
-      toManage: true, //false,
+      login: false, //false
+      toFunction: true, //true,
+      toManage: false, //false,
       toHistory: false,
       defaultFace:
         "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1627666224,1511761802&fm=58",
@@ -223,7 +223,12 @@ class Main extends React.Component {
             {this.props.name}{" "}
           </p>
       <Button type="primary">Primary</Button>
-          
+      <Button type="danger">Danger</Button>
+      <Row>
+        <Col xs={2} sm={4} md={6} lg={8} xl={10}>Col</Col>
+        <Col xs={20} sm={16} md={12} lg={8} xl={4}>Col</Col>
+        <Col xs={2} sm={4} md={6} lg={8} xl={10}>Col</Col>
+    </Row>
         </header>
        
         {loginContern}
@@ -280,8 +285,6 @@ class Main extends React.Component {
     });
   }
   ensureEdit(event) {
-
-    return
     if (this.state.editName == "") {
       alert("姓名不能为空");
     } else {

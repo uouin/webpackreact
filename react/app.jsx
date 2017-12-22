@@ -13,6 +13,14 @@ let app = {
         app.render(this.dataArr);
         console.log(this.dataArr);
     },
+    delete:function(id){
+        // 数组按规则过滤
+        var newArr = this.dataArr.filter((item)=>{
+            return item.id != id;
+        });
+        this.dataArr = newArr;
+        app.render(this.dataArr);
+    },
     toggleaAll:function(boolen){
         this.dataArr.forEach((item)=>{
             item.complete = boolen;
@@ -26,14 +34,6 @@ let app = {
                 item.complete = ! item.complete;
             }
         });
-        app.render(this.dataArr);
-    },
-    delete:function(id){
-        // 数组按规则过滤
-        var newArr = this.dataArr.filter((item)=>{
-            return item.id != id;
-        });
-        this.dataArr = newArr;
         app.render(this.dataArr);
     },
     print:function(){

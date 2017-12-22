@@ -1,41 +1,60 @@
-import React, { Component } from 'react';
-// var React = require("react");
+// var str = require('./tool.js');
+// document.body.innerHTML = "wwww:" + str;
+
+// define([
+//     './tool.js',
+// ], function (str) {
+//     document.body.innerHTML = "<div>" + str + "</div>";
+// });
+
+// require('style-loader!css-loader!./index.css');
+var React = require("react");
 var ReactDOM = require("react-dom");
 var diva = document.createElement("div");
+var divb = document.createElement("div");
+divb.className = "none";
 document.body.appendChild(diva);
+document.body.appendChild(divb);
 
 // var Hello = React.createClass({
 //     render: function () {
 //         return (<h1> hello </h1>);
 //     }
 // });//错误写法
+import Table from "./util";
+ReactDOM.render(<Table name="gg" />, divb);
 
-require("./css/todo");                  //引css
-import MyImage from "./css/back.jpg";   //引图片
-import app from './app.jsx';            //引逻辑    代码简洁
-let dataJson = require("./data.json");  //引JSON   开发减少与后台交互
-import Item1,{Item} from "./item";              //引组件   大写   {}
+// todo demo---------------------------------------------------------------------
+require("./css/todo");
+import MyImage from "./css/back.jpg";
+let appClass = require("./app.jsx");
+let dataJson = require("./data.json");
+let app = appClass.default;
+import Item from "./item";
 
-
-
-console.log("Json文件", dataJson);
+consolelog("app?default", appClass);
+consolelog("Json文件", dataJson);
 
 class Main extends React.Component {
-  //构造函数，在创建组件的时候调用一次。
-  constructor(props) {
-    super(props);
-    this.state = {
-      str: "uouoououo"
-    };
-  }
-
   render() {
+    app.print(module.hot);
+    
+    if (module.hot) {
+      app.print('优质');
+      module.hot.accept("./app.jsx", function() {
+        app.print('改动');
+        console.log("-----------------------------");
+        console.log("Accepting the updated printMe module!");
+        app.print('nihiah');
+      });
+    }
+
     var dataA = this.props.dataA;
 
     var content,
       footer,
       num = 0;
-
+    // reduce的作用???
     dataA.reduce((n, item) => {
       num = item.complete ? num : num + 1; // num个未选
     }, 0);
@@ -52,14 +71,11 @@ class Main extends React.Component {
           />
           <ul className="todoList">
             {dataA.map(
-              function (item, index) {
+              function(item, index) {
                 return (
                   <Item
                     key={index}
                     {...item}
-                    // id={item.id}
-                    // content={item.content}
-                    // complete={item.complete}
                     toggle={this.toggle.bind(this, item.id)}
                     delete={this.delete.bind(this, item.id)}
                   />
@@ -83,8 +99,7 @@ class Main extends React.Component {
     return (
       <div className="contain">
         <header className="header">
-        <Item1 content={this.state.str} text="这里是" todo={this.todo.bind(this)}/>
-          <p className="headerP">
+          <p>
             <i className="iconfont">&#xe893;</i>Hello {this.props.name}{" "}
           </p>
           <input
@@ -107,33 +122,27 @@ class Main extends React.Component {
     }
   }
   toggleaAll(event) {
-    // console.log(event.target.checked);//input>checked
+    // consolelog(event.target.checked);//input>checked
     app.toggleaAll(event.target.checked);
   }
   toggle(id, event) {
     // 属性也可以传函数
-    console.log(event.target.checked);
+    consolelog(event.target.checked);
     app.toggle(id);
   }
   delete(id) {
     app.delete(id);
   }
-  todo(){
-    this.todoa();
-    console.log('2131312312');
-    this.setState({
-      str:'909090'
-    })
-  }
-  todoa(){
-    console.log('33333');
-  }
 }
 
-
-
 function render(dataArr) {
-  ReactDOM.render(<Main name='todo' dataA={dataArr} />, diva);
+  ReactDOM.render(<Main name="toodo" dataA={dataArr} />, diva);
 }
 render(app.dataArr);
 app.render = render;
+
+function consolelog() {
+  arguments[1] === undefined
+    ? console.log(`------------------------\n`, arguments[0])
+    : console.log(`------------${arguments[0]}------------\n`, arguments[1]);
+}
