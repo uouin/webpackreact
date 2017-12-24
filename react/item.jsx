@@ -10,6 +10,11 @@ const i = {
 export default class Item1 extends React.Component {
   componentWillMount() {
     console.log('componentWillMount');
+    setInterval(()=>{
+      this.setState({
+        content:new Date().toLocaleTimeString()
+      })
+    },1000);
   }
   componentDidMount() {
     console.log('componentDidMount');
@@ -36,6 +41,7 @@ export default class Item1 extends React.Component {
     super(props);
     this.state = {
       show: true,
+      content:'',
       i: {
         height: '90px',
         width: '100px',
@@ -53,13 +59,20 @@ export default class Item1 extends React.Component {
   }
   render() {
     // console.log(this.props.complete);
+    // function Welcome(props) {
+    //   return <h1>Hello, {props.name}</h1>;
+    // }
+    let Welcome = (
+       <h1>Hello, {this.props.text}</h1>
+    )
     return (
       <div
         className={this.state.show
         ? "itemTest"
         : 'none'}
         style={this.state.i}>
-        <p className="">{this.props.content}</p>
+        {Welcome}
+        <p className="">{this.state.content}</p>
         <input type="text" defaultValue={this.props.text} ref='name'/>
         <button onClick={this
           .todo

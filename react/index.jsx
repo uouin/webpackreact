@@ -135,5 +135,6 @@ class Main extends React.Component {
 function render(dataArr) {
   ReactDOM.render(<Main name='todo' dataA={dataArr} />, diva);
 }
+
 render(app.dataArr);
 app.render = render;
